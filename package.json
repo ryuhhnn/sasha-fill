@@ -1,0 +1,22 @@
+{
+  "name": "sasha-fill",
+  "version": "1.0.0",
+  "description": "Custom-sized placeholder images of Beyoncé Knowles-Carter, known to some as Queen Bey.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryuhhnn/sasha-fill.git"
+  },
+  "author": "Ryan Coleman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryuhhnn/sasha-fill/issues"
+  },
+  "homepage": "https://github.com/ryuhhnn/sasha-fill#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
