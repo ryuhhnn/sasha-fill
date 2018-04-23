@@ -16,7 +16,7 @@ const s3 = new AWS.S3({
 let photos = []
 
 app.get('/', (req, res) => {
-    s3.listObjects({ Prefix: '/photos/' }, function (err, data) {
+    s3.listObjects({ Delimiter: '/photos/', Prefix: '/photos/' }, function (err, data) {
         if (err) res.send(err, err.stack)
         else photos = data.Contents
 
