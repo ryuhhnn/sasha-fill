@@ -13,10 +13,14 @@ const s3 = new AWS.S3({
     }
 })
 
+let photos = []
+
 app.get('/', (req, res) => {
-    s3.listObjects({}, function (err, data) {
+    s3.listObjects({ Delimiter: '/photos' }, function (err, data) {
         if (err) res.send(err, err.stack)
-        else res.send(data)
+        else photos = data.Contents
+
+        res.send(photos[Math.floor(Math.random() * photos.length)])
     })
 })
 
