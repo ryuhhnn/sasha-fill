@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
         if (err) res.send(err, err.stack)
         else photos = data.Contents
 
-        res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/photos/${photos[Math.floor(Math.random() * photos.length)].Key}`)
+        res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
     })
 })
 
