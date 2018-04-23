@@ -15,8 +15,8 @@ const s3 = new AWS.S3({
 
 app.get('/', (req, res) => {
     s3.listObjects({}, function (err, data) {
-        if (err) res.return(err, err.stack)
-        else res.return(data)
+        if (err) res.send(err, err.stack)
+        else res.send(data)
     })
 })
 
