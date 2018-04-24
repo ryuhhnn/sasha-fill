@@ -24,7 +24,8 @@ app.get('/', (req, res) => {
         // res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
 
         request.get(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`, (e, r, body) => {
-            res.send(r)
+            res.header('Content-Type', r.headers.content-type)
+            res.send(body.data)
         })
     })
 })
