@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const AWS = require('aws-sdk')
+const fs = require('fs')
 
 AWS.config.update({
     region: 'us-east-2'
@@ -20,7 +21,16 @@ app.get('/', (req, res) => {
         if (err) res.send(err, err.stack)
         else photos = data.Contents
 
-        res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
+        fs.readFile(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`, (err, content) => {
+            if (err) {
+                res.writeHead(400, { 'Content-type': 'text/html' })
+                res.end('Unexpected error occurred. Please try again.')    
+            } else {
+                res.writeHead(200, { 'Content-type': 'image/jpg' })
+                res.end(content)
+            }
+        })
+        // res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
     })
 })
 
