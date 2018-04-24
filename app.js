@@ -21,17 +21,7 @@ app.get('/', (req, res) => {
         if (err) res.send(err, err.stack)
         else photos = data.Contents
 
-        fs.readFile('https://toofab.akamaized.net/2018/04/22/beyonce-180422-coachella-getty-810x610.jpg', (err, content) => {
-            if (err) {
-                res.writeHead(400, { 'Content-type': 'text/html' })
-                console.log(err)
-                res.end('Unexpected error occurred. Please try again.')    
-            } else {
-                res.writeHead(200, { 'Content-type': 'image/jpg' })
-                res.end(content)
-            }
-        })
-        // res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
+        res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
     })
 })
 
