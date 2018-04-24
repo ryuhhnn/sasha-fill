@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
         fs.readFile('https://toofab.akamaized.net/2018/04/22/beyonce-180422-coachella-getty-810x610.jpg', (err, content) => {
             if (err) {
                 res.writeHead(400, { 'Content-type': 'text/html' })
+                console.log(err)
                 res.end('Unexpected error occurred. Please try again.')    
             } else {
                 res.writeHead(200, { 'Content-type': 'image/jpg' })
