@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const AWS = require('aws-sdk')
-const fs = require('fs')
+let request = require('request').defaults({ encoding: null })
 
 AWS.config.update({
     region: 'us-east-2'
@@ -21,7 +21,11 @@ app.get('/', (req, res) => {
         if (err) res.send(err, err.stack)
         else photos = data.Contents
 
-        res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
+        // res.redirect(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`)
+
+        request.get(`https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-192235711219/${photos[Math.floor(Math.random() * photos.length)].Key}`, (e, r, body) => {
+            res.send(r)
+        })
     })
 })
 
