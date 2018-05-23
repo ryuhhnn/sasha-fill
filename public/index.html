@@ -5,8 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sasha Fill | Your One-Stop Shop for Beyoncé Filler Images</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.0/normalize.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Heebo:800');
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-image: url(https://media.giphy.com/media/OGS0lT6ctBj6o/giphy.gif);
+            background-size: cover;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Heebo', sans-serif;
+            color: white;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        h1 {
+            font-size: 5em;
+        }
+
+        h2 {
+            font-size: 2.5em;
+        }
+
+        section {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .code {
+            padding: 20px 35px;
+            background-color: #2f2c40;
+            color: white;
+            font-family: monospace;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h1>sashafill.photossss</h1>
+    <section>
+        <h1>Sasha Fill</h1>
+        <h2 id="caption"></h2>
+
+        <div class="code">
+            &lt;img src="http://sashafill.photos/random" /&gt;
+        </div>
+    </section>
+
+    <script>
+        var phrases = [
+            "I’m not bossy. I’m the boss",
+            "Some call it arrogant. I call it confident",
+            "Bow down, bitches",
+            "You wake up, flawless",
+            "I woke up like this",
+            "Say, I look so good tonight",
+            "God damn, God damn, God damn!",
+            "Damn I know, I'm killing you with them legs",
+            "Some call it arrogant, I call it confident",
+            "I look damn good I ain't lost it",
+            "None of these bitches can fade me (fade me)",
+            "I sneezed on the beat and the beat got sicker",
+            "He better call Becky with the good hair",
+            "You must not know 'bout me",
+            "I take his ass to Red Lobster",
+            "I am the dragon breathing fire",
+            "Boy, bye"
+        ],
+        phraseNumber = phrases.length - 1,
+        $phrase = document.querySelector('#caption'),
+        number;
+
+        function getRandomNumber( min, max ) {
+            return Math.round( Math.random() * ( max - min ) + min );
+        }
+
+        function getRandomPhrase() {
+            let newNumber =  getRandomNumber( 1, phraseNumber );
+            number = newNumber !== number ? newNumber : newNumber - 1;
+            $phrase.innerHTML = phrases[number];
+        }
+
+        window.addEventListener('load', function () {
+            getRandomPhrase()
+        })
+    </script>
 </body>
 </html>
