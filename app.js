@@ -3,6 +3,8 @@ const app = express()
 const AWS = require('aws-sdk')
 let request = require('request').defaults({ encoding: null })
 
+app.use(express.static('public'))
+
 AWS.config.update({
     region: 'us-east-2'
 })
@@ -16,7 +18,7 @@ const s3 = new AWS.S3({
 
 let photos = []
 
-app.get('/', (req, res) => {
+app.get('/random', (req, res) => {
     s3.listObjects({ Delimiter: '/', Prefix: 'photos/' }, function (err, data) {
         if (err) res.send(err, err.stack)
         else photos = data.Contents
@@ -26,6 +28,10 @@ app.get('/', (req, res) => {
             res.send(r.body)
         })
     })
+})
+
+app.get('/', (req, res) => {
+    res.sendFile('./public/index.html')
 })
 
 app.listen(process.env.PORT, () => console.log(`Sasha Fill is now running on port ${process.env.PORT}!`))

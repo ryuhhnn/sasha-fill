@@ -4,7 +4,8 @@
   "description": "Custom-sized placeholder images of Beyoncé Knowles-Carter, known to some as Queen Bey.",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "serve": "PORT=3000 node app.js"
   },
   "repository": {
     "type": "git",
